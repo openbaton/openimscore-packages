@@ -1,0 +1,6 @@
+LOGFILE="/home/ubuntu/install.log"
+SERVICE="bind9"
+ZONEFILE="zone.template"
+CONFIG_FILE="/etc/bind/named.conf.local"
+REALMFILE="/etc/bind/openbaton.zone"
+ZONEFILE="zone.template"

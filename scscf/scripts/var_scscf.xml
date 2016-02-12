@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DiameterPeer 
+	FQDN="VAR_DNS_ENTRY"
+	Realm="VAR_DNS_REALM"
+	Vendor_Id="10415"
+	Product_Name="CDiameterPeer"
+	AcceptUnknownPeers="1"
+	DropUnknownOnDisconnect="1"
+	Tc="30"
+	Workers="4"
+	QueueLength="8"
+	TransactionTimeout="5"
+	SessionsHashSize="128"	
+>
+	
+	<Acceptor port="VAR_DIAMETER_PORT" bind="VAR_DIAMETER_LISTEN"/>
+	
+        <Auth id="16777216" vendor="10415"/><!-- 3GPP Cx -->
+        <Auth id="16777216" vendor="4491"/><!-- CableLabs Cx -->
+        <Auth id="16777216" vendor="13019"/><!-- ETSI/TISPAN Cx -->
+        <Auth id="16777216" vendor="0"/><!-- ETSI/TISPAN Cx -->
+	<!-- uncomment for Rf interface
+	<Auth id="3" vendor="0"/>
+	-->
+                
+	<DefaultRoute FQDN="VAR_DEFAULT_ROUTE" metric="10"/>
+
+</DiameterPeer>

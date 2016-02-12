@@ -1,0 +1,22 @@
+SERVICE="icscf"
+PACKAGES="subversion openssl gcc g++ ant make bison flex curl libcurl4-gnutls-dev libmysqlclient-dev libxml2 libxml2-dev mysql-server python-lxml"
+SVN_REPO="svn://svn.code.sf.net/p/openimscore/code/ser_ims/trunk"
+INSTALLATION_PATH="/opt/OpenIMSCore"
+SER_IMS="$INSTALLATION_PATH/ser_ims"
+LOG_DIR="$INSTALLATION_PATH/log"
+BIN_DIR="$INSTALLATION_PATH/bin"
+ETC_DIR="$INSTALLATION_PATH/etc"
+SQL_DIR="$ETC_DIR/sql"
+INIT_DIR="$ETC_DIR/init"
+LOGFILE="/home/ubuntu/install.log"
+
+ADD_CDP_SCRIPT="add_cdp.py"
+SUBSITUTE_SCRIPT="substitute.py"
+
+XML_OUTPUT_FILE="$ETC_DIR/icscf.xml"
+XML_INPUT_FILE="$ETC_DIR/var_icscf.xml"
+CFG_OUTPUT_FILE="$ETC_DIR/icscf.cfg"
+CFG_INPUT_FILE="$ETC_DIR/var_icscf.cfg"
+SQL_OUTPUT_FILE="$ETC_DIR/sql/icscf.sql"
+SQL_INPUT_FILE="$ETC_DIR/sql/var_icscf.sql"
+

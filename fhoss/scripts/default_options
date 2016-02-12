@@ -1,0 +1,23 @@
+SERVICE="fhoss"
+PACKAGES="subversion ant openjdk-7-jdk mysql-server-5.5 screen python-lxml"
+FHOSS_REPO="svn://svn.code.sf.net/p/openimscore/code/FHoSS/trunk"
+
+JAVA_PATH="/usr/lib/jvm/java-7-openjdk-amd64/"
+JAVA_BIN_PATH="$JAVA_PATH\bin/"
+
+INSTALLATION_PATH="/opt/FHoSS"
+DEPLOY_DIR="$INSTALLATION_PATH/deploy"
+SCRIPTS_DIR="$INSTALLATION_PATH/scripts"
+
+HSS_PROPERTIES_FILE="$DEPLOY_DIR/hss.properties"
+HSS_DATABASE_FILE="$SCRIPTS_DIR/hss_db.sql"
+START_SCRIPT="$DEPLOY_DIR/startup.sh"
+
+HSS_USERS_FILE="$SCRIPTS_DIR/userdata_modified.sql"
+HSS_DIAMETER_PEER_FILE="$DEPLOY_DIR/DiameterPeerHSS_modified.xml"
+HSS_ORIG_DIAMETER_PEER_FILE="$DEPLOY_DIR/DiameterPeerHSS.xml"
+
+LOGFILE="/home/ubuntu/install.log"
+
+ADD_CDP_SCRIPT="add_cdp.py"
+SUBSITUTE_SCRIPT="substitute.py"

@@ -1,0 +1,5 @@
+name: pcscf
+image:
+    upload: false
+    names:
+        - ubuntu-14.04-server-cloudimg-amd64-disk1
