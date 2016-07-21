@@ -1,0 +1,17 @@
+{
+  "name":"vim-instance",
+  "authUrl":"http://192.168.145.50:5000/v2.0",
+  "tenant":"tenantName",
+  "username":"userName",
+  "password":"password",
+  "keyPair":"keypair",
+  "securityGroups": [
+    "default"
+  ],
+  "type":"openstack",
+  "location":{
+    "name":"Berlin",
+    "latitude":"52.525876",
+    "longitude":"13.314400"
+  }
+}
