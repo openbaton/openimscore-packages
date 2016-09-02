@@ -10,14 +10,14 @@ inputs:
   interfaces:
     lifecycle:
       INSTANTIATE:
-	- fhoss_install.sh
+        - fhoss_install.sh
       START:
-	- "fhoss_generate_config.sh"
-	- "fhoss_start.sh"
+        - "fhoss_generate_config.sh"
+        - "fhoss_start.sh"
       CONFIGURE:
-	- "bind9_relation_joined.sh"
-	- "icscf_relation_joined.sh"
-	- "scscf_relation_joined.sh"
+        - "bind9_relation_joined.sh"
+        - "icscf_relation_joined.sh"
+        - "scscf_relation_joined.sh"
 
   deploymentFlavour:
     - flavour_key: m1.small
@@ -47,7 +47,7 @@ topology_template:
         - virtualBinding: vdu1
         - virtualLink: mgmt
       properties:
-	floatingIP: random
+        floatingIP: random
 
     mgmt:
       type: tosca.nodes.nfv.VL
