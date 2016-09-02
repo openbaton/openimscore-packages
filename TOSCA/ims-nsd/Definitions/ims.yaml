@@ -1,0 +1,397 @@
+tosca_definitions_version: tosca_OpenIMSCore
+tosca_default_namespace:    # Optional. default namespace (schema, types version)
+description: NSD for deploing the OpenIMSCore
+metadata:
+  ID: openIMSCore              # ID of this Network Service Descriptor
+  vendor: Fokus       # Provider or vendor of the Network Service
+  version: 1.0
+
+topology_template:
+  node_templates:
+
+    bind9:
+      type: openbaton.type.VNF
+      properties:
+        id:
+        vendor: Fokus
+        version: 0.1
+        endpoint: generic
+        type: bind9
+        configurations:
+          name: client-configuration
+          configurationParameters:
+            - realm: epc.mnc001.mcc001.3gppnetwork.org
+            - useFloatingIpsForEntries: "true"
+        deploymentFlavour:
+          - flavour_key: m1.small
+      requirements:
+        - virtualLink: mgmt
+        - vdu: VDU1
+      interfaces:
+        lifecycle:
+          INSTANTIATE:
+            - bind9_install.sh
+          START:
+            - generate_zone_file.sh
+            - bind9_restart.sh
+          CONFIGURE:
+            - fhoss_relation_joined.sh
+            - icscf_relation_joined.sh
+            - scscf_relation_joined.sh
+            - pcscf_relation_joined.sh
+            - mmechess_relation_joined.sh
+
+    VDU1:
+      type: tosca.nodes.nfv.VDU
+      properties:
+        vm_image:
+          - ubuntu-14.04-server-cloudimg-amd64-disk1
+        scale_in_out: 1
+        vimInstanceName: vim-instance
+      requirements:
+         - virtual_link: CP1
+    CP1: 
+      type: tosca.nodes.nfv.CP
+      properties:
+        floatingIP: random
+      requirements:
+        - virtualbinding: VDU1
+        - virtualLink: mgmt
+
+    fhoss:
+      type: openbaton.type.VNF
+      properties:
+        id:
+        vendor: Fokus
+        version: 0.1
+        endpoint: generic
+        type: fhoss
+        configurations:
+          name: client-configuration
+          configurationParameters:
+            - diameter_p: "3868"
+            - name: hss
+        vnfPackageLocation:
+        deploymentFlavour:
+          - flavour_key: m1.small
+      requirements:
+        - virtualLink: mgmt
+        - vdu: VDU2
+      interfaces:
+        lifecycle:
+          INSTANTIATE:
+            - fhoss_install.sh
+          START:
+            - "fhoss_generate_config.sh"
+            - "fhoss_start.sh"
+          CONFIGURE:
+            - "bind9_relation_joined.sh"
+            - "icscf_relation_joined.sh"
+            - "scscf_relation_joined.sh"
+
+    VDU2:
+      type: tosca.nodes.nfv.VDU
+      properties:
+        vm_image:
+          - ubuntu-14.04-server-cloudimg-amd64-disk1
+        scale_in_out: 1
+        vimInstanceName: vim-instance
+      requirements:
+         - virtual_link: CP2
+    CP2: 
+      type: tosca.nodes.nfv.CP
+      properties:
+        floatingIP: random
+      requirements:
+        - virtualbinding: VDU2
+        - virtualLink: mgmt
+
+
+    icscf:
+      type: openbaton.type.VNF
+      properties:
+        id:
+        vendor: Fokus
+        version: 0.1
+        endpoint: generic
+        type: icscf
+        configurations:
+          name: client-configuration
+          configurationParameters:
+            - diameter_p: "3868"
+            - name: icscf
+            - port: "5060"
+        vnfPackageLocation:
+        deploymentFlavour:
+          - flavour_key: m1.small
+      requirements:
+        - virtualLink: mgmt
+        - vdu: VDU3
+      interfaces:
+        lifecycle:
+          INSTANTIATE:
+            - icscf_install.sh
+          START:
+            - "icscf_generate_config.sh"
+            - "icscf_start.sh"
+          CONFIGURE:
+            - "bind9_relation_joined.sh"
+            - "fhoss_relation_joined.sh"
+            - "scscf_relation_joined.sh"
+
+    VDU3:
+      type: tosca.nodes.nfv.VDU
+      properties:
+        vm_image:
+          - ubuntu-14.04-server-cloudimg-amd64-disk1
+        scale_in_out: 1
+        vimInstanceName: vim-instance
+      requirements:
+         - virtual_link: CP3
+    CP3: 
+      type: tosca.nodes.nfv.CP
+      properties:
+        floatingIP: random
+      requirements:
+        - virtualbinding: VDU3
+        - virtualLink: mgmt
+
+
+    pcscf:
+      type: openbaton.type.VNF
+      properties:
+        id:
+        vendor: Fokus
+        version: 0.1
+        endpoint: generic
+        type: pcscf
+        configurations:
+          name: client-configuration
+          configurationParameters:
+            - name: pcscf
+            - port: "4060"
+        deploymentFlavour:
+          - flavour_key: m1.small
+      requirements:
+        - virtualLink: mgmt
+        - vdu: VDU4
+      interfaces:
+        lifecycle:
+          INSTANTIATE:
+            - pcscf_install.sh
+          START:
+            - "pcscf_generate_config.sh"
+            - "pcscf_start.sh"
+          CONFIGURE:
+            - "bind9_relation_joined.sh"
+
+    VDU4:
+      type: tosca.nodes.nfv.VDU
+      properties:
+        vm_image:
+          - ubuntu-14.04-server-cloudimg-amd64-disk1
+        scale_in_out: 1
+        vimInstanceName: vim-instance
+      requirements:
+         - virtual_link: CP4
+    CP4: 
+      type: tosca.nodes.nfv.CP
+      properties:
+        floatingIP: random
+      requirements:
+        - virtualbinding: VDU4
+        - virtualLink: mgmt
+
+    scscf:
+      type: openbaton.type.VNF
+      properties:
+        id:
+        vendor: Fokus
+        version: 0.1
+        endpoint: generic
+        type: scscf
+        configurations:
+          name: client-configuration
+          configurationParameters:
+            - name: scscf
+            - port: "6060"
+            - diameter_p: "3870"
+        deploymentFlavour:
+          - flavour_key: m1.small
+      requirements:
+        - virtualLink: mgmt
+        - vdu: VDU5
+      interfaces:
+        lifecycle:
+          INSTANTIATE:
+            - scscf_install.sh
+          START:
+            - "scscf_generate_config.sh"
+            - "scscf_start.sh"
+          CONFIGURE:
+            - "bind9_relation_joined.sh"
+            - "fhoss_relation_joined.sh"
+            - "icscf_relation_joined.sh"
+
+    VDU5:
+      type: tosca.nodes.nfv.VDU
+      properties:
+        vm_image:
+          - ubuntu-14.04-server-cloudimg-amd64-disk1
+        scale_in_out: 1
+        vimInstanceName: vim-instance
+      requirements:
+         - virtual_link: CP5
+    CP5: 
+      type: tosca.nodes.nfv.CP
+      properties:
+        floatingIP: random
+      requirements:
+        - virtualbinding: VDU5
+        - virtualLink: mgmt
+
+    mgmt:
+      type: tosca.nodes.nfv.VL
+      properties:
+        vendor: Fokus
+      capabilities:
+        virtual_linkable:
+          valid_source_types: tosca.nodes.nfv.CP
+
+relationships_template:
+  rel1:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: bind9
+    target: fhoss
+    parameters:
+      - "useFloatingIpsForEntries"
+      - "realm"
+      - "mgmt"
+      - "mgmt_floatingIp"
+
+  rel2:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: bind9
+    target: icscf
+    parameters:
+      - "useFloatingIpsForEntries"
+      - "realm"
+      - "mgmt"
+      - "mgmt_floatingIp"
+
+  rel3:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: bind9
+    target: scscf
+    parameters:
+      - "useFloatingIpsForEntries"
+      - "realm"
+      - "mgmt"
+      - "mgmt_floatingIp"
+
+  rel4:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: bind9
+    target: pcscf
+    parameters:
+      - "useFloatingIpsForEntries"
+      - "realm"
+      - "mgmt"
+      - "mgmt_floatingIp"
+
+  rel5:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: fhoss
+    target: bind9
+    parameters:
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"
+
+  rel6:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: icscf
+    target: bind9
+    parameters:
+      - "port"
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"
+
+  rel7:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: scscf
+    target: bind9
+    parameters:
+      - "port"
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"
+
+  rel8:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: pcscf
+    target: bind9
+    parameters:
+      - "port"
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"
+
+  rel9:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: fhoss
+    target: icscf
+    parameters:
+      - "port"
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"
+
+  rel10:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: fhoss
+    target: scscf
+    parameters:
+      - "port"
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"
+  rel11:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: scscf
+    target: fhoss
+    parameters:
+      - "port"
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"
+      - "diameter_p"
+
+  rel12:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: icscf
+    target: fhoss
+    parameters:
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"
+      - "diameter_p"
+
+  rel13:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: scscf
+    target: icscf
+    parameters:
+      - "port"
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"
+  rel14:
+    type: tosca.nodes.relationships.ConnectsTo
+    source: icscf
+    target: scscf
+    parameters:
+      - "name"
+      - "mgmt"
+      - "mgmt_floatingIp"

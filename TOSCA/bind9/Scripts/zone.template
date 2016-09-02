@@ -1,0 +1,33 @@
+$TTL 3600
+
+
+
+VAR_DNS_REALM. IN SOA ns.VAR_DNS_REALM. openbaton.fokus.fraunhofer.de. (
+
+    1418218610 ; serial
+
+    3600 ; refresh
+
+    600 ; retry
+
+    86400 ; expire
+
+    3600 ; minimum
+
+)
+
+
+
+
+
+VAR_DNS_REALM. IN NS ns.VAR_DNS_REALM.
+
+
+
+
+
+ns.VAR_DNS_REALM.  IN A  VAR_DNS_MGMT
+
+dns.VAR_DNS_REALM.  IN A  VAR_DNS_MGMT
+
+
