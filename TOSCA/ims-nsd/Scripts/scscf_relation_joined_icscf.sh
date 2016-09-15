@@ -4,11 +4,11 @@
 #########################
 # Author : lgr
 
-# scscf fhoss relation joined script
+# icscf scscf relation joined script
 
 # If there are default options load them 
-if [ -f "$SCRIPTS_PATH/default_options" ]; then
-	source $SCRIPTS_PATH/default_options
+if [ -f "$SCRIPTS_PATH/default_options_icscf" ]; then
+	source $SCRIPTS_PATH/default_options_icscf
 fi 
 
 if [ -z "$SCRIPTS_PATH" ]; then
@@ -20,25 +20,25 @@ fi
 
 VARIABLE_BUCKET="$SCRIPTS_PATH/.variables"
 
-# Check for fhoss related information
+# Check for icscf related information
 
-if [ -z "$fhoss_name" ]; then
+if [ -z "$scscf_name" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : there is no fhoss_name! Using default : hss"
-	fhoss_name="hss"
+	echo "$SERVICE : there is no scscf_name! Using default : scscf"
+	scscf_name="scscf"
 fi
 
-if [ -z "$fhoss_port" ]; then
+if [ -z "$scscf_port" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : there is no fhoss_port! Using default : 3868"
-	fhoss_port="3868"
+	echo "$SERVICE : there is no scscf_port! Using default : 6060"
+	scscf_port="6060"
 fi
 
-# Save variables related to bind9 into a file to access it in a later phase
+# Save variables related to icscf into a file to access it in a later phase
 if [ -f "$VARIABLE_BUCKET" ]; then
 	source $VARIABLE_BUCKET
 else
 	touch $VARIABLE_BUCKET
 fi
-printf "fhoss_name=%s\n" \"$fhoss_name\" >> $VARIABLE_BUCKET
-printf "fhoss_port=%s\n" \"$fhoss_port\" >> $VARIABLE_BUCKET
+printf "scscf_name=%s\n" \"$scscf_name\" >> $VARIABLE_BUCKET
+printf "scscf_port=%s\n" \"$scscf_port\" >> $VARIABLE_BUCKET

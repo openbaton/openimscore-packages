@@ -35,10 +35,10 @@ topology_template:
             - generate_zone_file.sh
             - bind9_restart.sh
           CONFIGURE:
-            - fhoss_relation_joined.sh
-            - icscf_relation_joined.sh
-            - scscf_relation_joined.sh
-            - pcscf_relation_joined.sh
+            - fhoss_relation_joined_bind9.sh
+            - icscf_relation_joined_bind9.sh
+            - scscf_relation_joined_bind9.sh
+            - pcscf_relation_joined_bind9.sh
             - mmechess_relation_joined.sh
 
     VDU1:
@@ -47,7 +47,8 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vimInstanceName: vim-instance
+        vim_instance_name: 
+         - vim-instance
       requirements:
          - virtual_link: CP1
     CP1: 
@@ -55,7 +56,7 @@ topology_template:
       properties:
         floatingIP: random
       requirements:
-        - virtualbinding: VDU1
+        - virtualBinding: VDU1
         - virtualLink: mgmt
 
     fhoss:
@@ -85,9 +86,9 @@ topology_template:
             - "fhoss_generate_config.sh"
             - "fhoss_start.sh"
           CONFIGURE:
-            - "bind9_relation_joined.sh"
-            - "icscf_relation_joined.sh"
-            - "scscf_relation_joined.sh"
+            - "bind9_relation_joined_fhoss.sh"
+            - "icscf_relation_joined_fhoss.sh"
+            - "scscf_relation_joined_fhoss.sh"
 
     VDU2:
       type: tosca.nodes.nfv.VDU
@@ -95,7 +96,8 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vimInstanceName: vim-instance
+        vim_instance_name: 
+         - vim-instance
       requirements:
          - virtual_link: CP2
     CP2: 
@@ -103,7 +105,7 @@ topology_template:
       properties:
         floatingIP: random
       requirements:
-        - virtualbinding: VDU2
+        - virtualBinding: VDU2
         - virtualLink: mgmt
 
 
@@ -135,9 +137,9 @@ topology_template:
             - "icscf_generate_config.sh"
             - "icscf_start.sh"
           CONFIGURE:
-            - "bind9_relation_joined.sh"
-            - "fhoss_relation_joined.sh"
-            - "scscf_relation_joined.sh"
+            - "bind9_relation_joined_icscf.sh"
+            - "fhoss_relation_joined_icscf.sh"
+            - "scscf_relation_joined_icscf.sh"
 
     VDU3:
       type: tosca.nodes.nfv.VDU
@@ -145,7 +147,8 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vimInstanceName: vim-instance
+        vim_instance_name: 
+         - vim-instance
       requirements:
          - virtual_link: CP3
     CP3: 
@@ -153,7 +156,7 @@ topology_template:
       properties:
         floatingIP: random
       requirements:
-        - virtualbinding: VDU3
+        - virtualBinding: VDU3
         - virtualLink: mgmt
 
 
@@ -183,7 +186,7 @@ topology_template:
             - "pcscf_generate_config.sh"
             - "pcscf_start.sh"
           CONFIGURE:
-            - "bind9_relation_joined.sh"
+            - "bind9_relation_joined_pcscf.sh"
 
     VDU4:
       type: tosca.nodes.nfv.VDU
@@ -191,7 +194,8 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vimInstanceName: vim-instance
+        vim_instance_name: 
+         - vim-instance
       requirements:
          - virtual_link: CP4
     CP4: 
@@ -199,7 +203,7 @@ topology_template:
       properties:
         floatingIP: random
       requirements:
-        - virtualbinding: VDU4
+        - virtualBinding: VDU4
         - virtualLink: mgmt
 
     scscf:
@@ -229,9 +233,9 @@ topology_template:
             - "scscf_generate_config.sh"
             - "scscf_start.sh"
           CONFIGURE:
-            - "bind9_relation_joined.sh"
-            - "fhoss_relation_joined.sh"
-            - "icscf_relation_joined.sh"
+            - "bind9_relation_joined_scscf.sh"
+            - "fhoss_relation_joined_scscf.sh"
+            - "icscf_relation_joined_scscf.sh"
 
     VDU5:
       type: tosca.nodes.nfv.VDU
@@ -239,7 +243,8 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vimInstanceName: vim-instance
+        vim_instance_name: 
+         - vim-instance
       requirements:
          - virtual_link: CP5
     CP5: 
@@ -247,7 +252,7 @@ topology_template:
       properties:
         floatingIP: random
       requirements:
-        - virtualbinding: VDU5
+        - virtualBinding: VDU5
         - virtualLink: mgmt
 
     mgmt:

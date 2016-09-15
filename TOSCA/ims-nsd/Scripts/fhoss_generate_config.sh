@@ -7,8 +7,8 @@
 # fhoss generate config script.
 
 # If there are default options load them 
-if [ -f "$SCRIPTS_PATH/default_options" ]; then
-	source $SCRIPTS_PATH/default_options
+if [ -f "$SCRIPTS_PATH/default_options_fhoss" ]; then
+	source $SCRIPTS_PATH/default_options_fhoss
 fi 
 
 if [ -z "$SCRIPTS_PATH" ]; then

@@ -4,7 +4,7 @@
 #########################
 # Author : lgr
 
-# bind9 mmechess relation joined script
+# bind9 fhoss relation joined script
 
 # If there are default options load them 
 if [ -f "$SCRIPTS_PATH/default_options_bind9" ]; then
@@ -20,35 +20,29 @@ fi
 
 VARIABLE_BUCKET="$SCRIPTS_PATH/.variables"
 
-# Check for mmechess related information
+# Check for fhoss related information
 
-if [ -z "$mmechess_var_name" ]; then
+if [ -z "$fhoss_name" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : there is no mmechess_var_name! Using default : mme"
-	mmechess_var_name="mme"
+	echo "$SERVICE : there is no fhoss_name! Using default : hss"
+	fhoss_name="hss"
 fi
 
-if [ -z "$mmechess_hostname" ]; then
+if [ -z "$fhoss_mgmt" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : there is no mmechess_hostname! Using default : mmechess"
-	mmechess_hostname="mmechess"
-fi
-
-if [ -z "$mmechess_mgmt" ]; then
-	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : there is no mgmt network for mmechess !"
+	echo "$SERVICE : there is no mgmt network for fhoss !"
 	exit 1
 fi
 
 # Check if we want to use floatingIPs for the entries
-echo "$SERVICE : useFloatingIpsForEntries : $useFloatingIpsForEntries for mmechess"
+echo "$SERVICE : useFloatingIpsForEntries : $useFloatingIpsForEntries for fhoss"
 if [ ! $useFloatingIpsForEntries = "false" ]; then
-	if [ -z "$mmechess_mgmt_floatingIp" ]; then
-		echo "$SERVICE : there is no floatingIP for the mgmt network for mmechess !"
+	if [ -z "$fhoss_mgmt_floatingIp" ]; then
+		echo "$SERVICE : there is no floatingIP for the mgmt network for fhoss !"
 		#exit 1
 	else
 		# Else we just overwrite the environment variable
-		mmechess_mgmt=$mmechess_mgmt_floatingIp
+		fhoss_mgmt=$fhoss_mgmt_floatingIp
 	fi
 fi
 
@@ -59,12 +53,11 @@ if [ -f "$VARIABLE_BUCKET" ]; then
 else
 	touch $VARIABLE_BUCKET
 fi
-printf "mmechess_var_name=%s\n" \"$mmechess_var_name\" >> $VARIABLE_BUCKET
-printf "mmechess_mgmt=%s\n" \"$mmechess_mgmt\" >> $VARIABLE_BUCKET
+printf "fhoss_name=%s\n" \"$fhoss_name\" >> $VARIABLE_BUCKET
+printf "fhoss_mgmt=%s\n" \"$fhoss_mgmt\" >> $VARIABLE_BUCKET
 
 # Fill up the template dns zone file with the necessary entries
 cat >>$SCRIPTS_PATH/$ZONEFILE <<EOL
-$mmechess_var_name.$realm. IN A $mmechess_mgmt
-$mmechess_hostname.$realm. IN A $mmechess_mgmt
+$fhoss_name.$realm. IN A $fhoss_mgmt
 EOL
 

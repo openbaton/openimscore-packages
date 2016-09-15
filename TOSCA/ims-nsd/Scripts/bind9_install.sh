@@ -7,8 +7,8 @@
 # bind9 installation script.
 
 # If there are default options load them 
-if [ -f "$SCRIPTS_PATH/default_options" ]; then
-	source $SCRIPTS_PATH/default_options
+if [ -f "$SCRIPTS_PATH/default_options_bind9" ]; then
+	source $SCRIPTS_PATH/default_options_bind9
 fi
 
 echo "$SERVICE : Installing packages"

@@ -1,0 +1,16 @@
+SERVICE="pcscf"
+PACKAGES="subversion openssl gcc g++ ant make bison flex curl libcurl4-gnutls-dev libxml2 libxml2-dev libmysqlclient-dev"
+SVN_REPO="svn://svn.code.sf.net/p/openimscore/code/ser_ims/trunk"
+
+INSTALLATION_PATH="/opt/OpenIMSCore"
+SER_IMS="$INSTALLATION_PATH/ser_ims"
+LOG_DIR="$INSTALLATION_PATH/log"
+BIN_DIR="$INSTALLATION_PATH/bin"
+ETC_DIR="$INSTALLATION_PATH/etc"
+INIT_DIR="$ETC_DIR/init"
+LOGFILE="/home/ubuntu/install.log"
+
+SUBSITUTE_SCRIPT="substitute.py"
+
+CFG_OUTPUT_FILE="$ETC_DIR/pcscf.cfg"
+CFG_INPUT_FILE="$ETC_DIR/var_pcscf.cfg"

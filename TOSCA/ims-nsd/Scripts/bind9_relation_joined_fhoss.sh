@@ -4,11 +4,11 @@
 #########################
 # Author : lgr
 
-# scscf bind9 relation joined script
+# fhoss bind9 relation joined script
 
 # If there are default options load them 
-if [ -f "$SCRIPTS_PATH/default_options" ]; then
-	source $SCRIPTS_PATH/default_options
+if [ -f "$SCRIPTS_PATH/default_options_fhoss"]; then
+	source $SCRIPTS_PATH/default_options_fhoss
 fi 
 
 if [ -z "$SCRIPTS_PATH" ]; then
@@ -18,6 +18,7 @@ else
 	echo "$SERVICE : Using custom script path $SCRIPTS_PATH"
 fi
 
+# Place to store our variables only available during the relation scripts
 VARIABLE_BUCKET="$SCRIPTS_PATH/.variables"
 
 # Check for bind9 realm related information
@@ -27,18 +28,21 @@ if [ -z "$bind9_realm" ]; then
 	bind9_realm="openims.test"
 fi
 
+# Check if fhoss got a ipv4 address on the mgmt network
 if [ -z "$mgmt" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
 	echo "$SERVICE : there is not mgmt network!"
 	exit 1
 fi
 
+# Check for bind9 realm related information
 if [ -z "$bind9_mgmt" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
 	echo "$SERVICE : there is not mgmt network for bind9!"
 	exit 1
 fi
 
+# Check for bind9 realm related information
 if [ ! -z "$bind9_useFloatingIpsForEntries" ]; then
 	echo "$SERVICE : bind9_useFloatingIpsForEntries : $bind9_useFloatingIpsForEntries"
 	if [ ! $bind9_useFloatingIpsForEntries = "false" ]; then

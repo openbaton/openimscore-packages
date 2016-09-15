@@ -7,8 +7,8 @@
 # pcscf generate config script
 
 # If there are default options load them 
-if [ -f "$SCRIPTS_PATH/default_options" ]; then
-	source $SCRIPTS_PATH/default_options
+if [ -f "$SCRIPTS_PATH/default_options_pcscf" ]; then
+	source $SCRIPTS_PATH/default_options_pcscf
 fi 
 
 if [ -z "$SCRIPTS_PATH" ]; then
