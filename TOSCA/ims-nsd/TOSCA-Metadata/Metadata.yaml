@@ -1,0 +1,5 @@
+name: bind9
+image:
+    upload: false
+    names:
+        - ubuntu-14.04-server-cloudimg-amd64-disk1
