@@ -34,10 +34,10 @@ topology_template:
             - generate_zone_file.sh
             - bind9_restart.sh
           CONFIGURE:
-            - fhoss_relation_joined_bind9.sh
-            - icscf_relation_joined_bind9.sh
-            - scscf_relation_joined_bind9.sh
-            - pcscf_relation_joined_bind9.sh
+            - fhoss_relation_joined.sh
+            - icscf_relation_joined.sh
+            - scscf_relation_joined.sh
+            - pcscf_relation_joined.sh
             - mmechess_relation_joined.sh
 
     VDU1:
@@ -85,9 +85,9 @@ topology_template:
             - "fhoss_generate_config.sh"
             - "fhoss_start.sh"
           CONFIGURE:
-            - "bind9_relation_joined_fhoss.sh"
-            - "icscf_relation_joined_fhoss.sh"
-            - "scscf_relation_joined_fhoss.sh"
+            - "bind9_relation_joined.sh"
+            - "icscf_relation_joined.sh"
+            - "scscf_relation_joined.sh"
 
     VDU2:
       type: tosca.nodes.nfv.VDU
@@ -136,9 +136,9 @@ topology_template:
             - "icscf_generate_config.sh"
             - "icscf_start.sh"
           CONFIGURE:
-            - "bind9_relation_joined_icscf.sh"
-            - "fhoss_relation_joined_icscf.sh"
-            - "scscf_relation_joined_icscf.sh"
+            - "bind9_relation_joined.sh"
+            - "fhoss_relation_joined.sh"
+            - "scscf_relation_joined.sh"
 
     VDU3:
       type: tosca.nodes.nfv.VDU
@@ -185,7 +185,7 @@ topology_template:
             - "pcscf_generate_config.sh"
             - "pcscf_start.sh"
           CONFIGURE:
-            - "bind9_relation_joined_pcscf.sh"
+            - "bind9_relation_joined.sh"
 
     VDU4:
       type: tosca.nodes.nfv.VDU
@@ -232,9 +232,9 @@ topology_template:
             - "scscf_generate_config.sh"
             - "scscf_start.sh"
           CONFIGURE:
-            - "bind9_relation_joined_scscf.sh"
-            - "fhoss_relation_joined_scscf.sh"
-            - "icscf_relation_joined_scscf.sh"
+            - "bind9_relation_joined.sh"
+            - "fhoss_relation_joined.sh"
+            - "icscf_relation_joined.sh"
 
     VDU5:
       type: tosca.nodes.nfv.VDU
