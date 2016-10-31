@@ -1,4 +1,4 @@
-tosca_definitions_version: tosca_OpenIMSCore
+tosca_definitions_version: tosca_1.0
 description: NSD for deploing the OpenIMSCore
 metadata:
   ID: openIMSCore              # ID of this Network Service Descriptor
@@ -46,8 +46,6 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vim_instance_name: 
-         - vim-instance
       requirements:
          - virtual_link: CP1
     CP1: 
@@ -95,8 +93,6 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vim_instance_name: 
-         - vim-instance
       requirements:
          - virtual_link: CP2
     CP2: 
@@ -146,8 +142,6 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vim_instance_name: 
-         - vim-instance
       requirements:
          - virtual_link: CP3
     CP3: 
@@ -193,8 +187,6 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vim_instance_name: 
-         - vim-instance
       requirements:
          - virtual_link: CP4
     CP4: 
@@ -242,8 +234,6 @@ topology_template:
         vm_image:
           - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
-        vim_instance_name: 
-         - vim-instance
       requirements:
          - virtual_link: CP5
     CP5: 
