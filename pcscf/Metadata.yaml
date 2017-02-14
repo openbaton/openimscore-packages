@@ -1,7 +1,20 @@
 name: pcscf
+provider: fokus
+nfvo_version: 3.2.0
+shared: true
+description: "A Proxy-CSCF (P-CSCF) is a SIP proxy that is the first point of contact for the IMS terminal. It can be located either in the visited network (in full IMS networks) or in the home network (when the visited network is not IMS compliant yet)."
 image:
-    upload: false
+    upload: check
     names:
-        - ubuntu-14.04-server-cloudimg-amd64-disk1
+        - openims
+    link: http://marketplace.openbaton.org:8082/api/v1/images/52e2ccc0-1dce-4663-894d-28aab49323aa/img
+image-config:
+    name: openims
+    diskFormat: qcow2
+    containerFormat: bare
+    minCPU: 0
+    minDisk: 0
+    minRam: 0
+    isPublic: true
 vim_types:
     - openstack

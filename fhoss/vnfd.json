@@ -51,8 +51,7 @@
                         } 
                      ]
                   }
-               ],
-               "vimInstanceName":["vim-instance"]
+               ]
             }
          ],
          "virtual_link":[  
