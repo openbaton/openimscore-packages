@@ -104,7 +104,13 @@ python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $HSS_DIAMETER_PEER_FILE VAR_FHOSS_DIA_BIN
 
 # now finally import userdata.sql since it has been overwritten
 
+sed -i -e 's/\(bind-address.*\)/#\1/g' /etc/mysql/my.cnf
+
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';"
+
 mysql -u root < $HSS_VARIABLE_USERS_FILE
+
+service mysql restart
 
 # Do not forget to replace the diameter file :)
 mv $HSS_DIAMETER_PEER_FILE $HSS_ORIG_DIAMETER_PEER_FILE
