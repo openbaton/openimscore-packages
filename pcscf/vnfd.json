@@ -1,7 +1,7 @@
       {  
          "name":"pcscf",
          "vendor":"fokus",
-         "version":"3.2.0",
+         "version":"3.1.0",
          "lifecycle_event":[  
             {  
                "event":"CONFIGURE",

@@ -1,6 +1,6 @@
 name: pcscf
 provider: fokus
-nfvo_version: 3.2.0
+nfvo_version: 3.1.0
 shared: true
 description: "A Proxy-CSCF (P-CSCF) is a SIP proxy that is the first point of contact for the IMS terminal. It can be located either in the visited network (in full IMS networks) or in the home network (when the visited network is not IMS compliant yet)."
 image:
