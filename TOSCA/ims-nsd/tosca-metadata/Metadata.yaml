@@ -1,11 +1,21 @@
-name: openIMSCore
-image:
-    upload: false
-    names:
-        - ubuntu-14.04-server-cloudimg-amd64-disk1
-shared: true
+name: OpenIMSCore
 description: The IP Multimedia Subsystem or IP Multimedia Core Network Subsystem (IMS) is an architectural framework for delivering IP multimedia services.
 provider: fokus
-vim_types: 
+shared: true
+nfvo_version: 3.2.0
+image:
+    upload: check
+    names:
+        - openims
+    link: http://marketplace.openbaton.org:8082/api/v1/images/52e2ccc0-1dce-4663-894d-28aab49323aa/img
+image-config:
+    name: openims
+    diskFormat: qcow2
+    containerFormat: bare
+    minCPU: 0
+    minDisk: 0
+    minRam: 0
+    isPublic: true
+vim_types:
     - openstack
 

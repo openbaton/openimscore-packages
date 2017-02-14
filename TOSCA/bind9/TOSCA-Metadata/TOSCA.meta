@@ -1,5 +1,0 @@
-TOSCA-Meta-File-Version: 1.0
-CSAR-Version: 1.1
-Created-By: Fokus
-Entry-Definitions: Definitions/bind9.yaml
-image: ubuntu-14.04-server-cloudimg-amd64-disk1

@@ -1,9 +1,9 @@
-tosca_definitions_version: tosca_1.0
-description: NSD for deploing the OpenIMSCore
+tosca_definitions_version: tosca_OpenIMSCore
+description: NS for deploying the OpenIMSCore
 metadata:
-  ID: openIMSCore              # ID of this Network Service Descriptor
-  vendor: Fokus       # Provider or vendor of the Network Service
-  version: 1.0
+  ID: OpenIMSCore   
+  vendor: fokus       # Provider or vendor of the Network Service
+  version: 3.2.0
 
 topology_template:
   node_templates:
@@ -12,8 +12,8 @@ topology_template:
       type: openbaton.type.VNF
       properties:
         id:
-        vendor: Fokus
-        version: 0.1
+        vendor: fokus
+        version: 3.2
         endpoint: generic
         type: bind9
         configurations:
@@ -43,8 +43,6 @@ topology_template:
     VDU1:
       type: tosca.nodes.nfv.VDU
       properties:
-        vm_image:
-          - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
       requirements:
          - virtual_link: CP1
@@ -60,8 +58,8 @@ topology_template:
       type: openbaton.type.VNF
       properties:
         id:
-        vendor: Fokus
-        version: 0.1
+        vendor: fokus
+        version: 3.2
         endpoint: generic
         type: fhoss
         configurations:
@@ -90,8 +88,6 @@ topology_template:
     VDU2:
       type: tosca.nodes.nfv.VDU
       properties:
-        vm_image:
-          - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
       requirements:
          - virtual_link: CP2
@@ -108,8 +104,8 @@ topology_template:
       type: openbaton.type.VNF
       properties:
         id:
-        vendor: Fokus
-        version: 0.1
+        vendor: fokus
+        version: 3.2
         endpoint: generic
         type: icscf
         configurations:
@@ -139,8 +135,6 @@ topology_template:
     VDU3:
       type: tosca.nodes.nfv.VDU
       properties:
-        vm_image:
-          - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
       requirements:
          - virtual_link: CP3
@@ -157,8 +151,8 @@ topology_template:
       type: openbaton.type.VNF
       properties:
         id:
-        vendor: Fokus
-        version: 0.1
+        vendor: fokus
+        version: 3.2
         endpoint: generic
         type: pcscf
         configurations:
@@ -184,8 +178,6 @@ topology_template:
     VDU4:
       type: tosca.nodes.nfv.VDU
       properties:
-        vm_image:
-          - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
       requirements:
          - virtual_link: CP4
@@ -201,8 +193,8 @@ topology_template:
       type: openbaton.type.VNF
       properties:
         id:
-        vendor: Fokus
-        version: 0.1
+        vendor: fokus
+        version: 3.2
         endpoint: generic
         type: scscf
         configurations:
@@ -231,8 +223,6 @@ topology_template:
     VDU5:
       type: tosca.nodes.nfv.VDU
       properties:
-        vm_image:
-          - ubuntu-14.04-server-cloudimg-amd64-disk1
         scale_in_out: 1
       requirements:
          - virtual_link: CP5
