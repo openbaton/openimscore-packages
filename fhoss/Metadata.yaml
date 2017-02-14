@@ -2,7 +2,7 @@ name: fhoss
 description: "The home subscriber server (HSS), or user profile server function (UPSF), is a master user database that supports the IMS network entities that actually handle calls. It contains the subscription-related information (subscriber profiles), performs authentication and authorization of the user, and can provide information about the subscriber's location and IP information. It is similar to the GSM home location register (HLR) and Authentication centre (AuC)."
 provider: fokus
 shared: true
-nfvo_version: 3.1.0
+nfvo_version: 3.0.0
 image:
     upload: check
     names:

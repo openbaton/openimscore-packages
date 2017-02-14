@@ -2,7 +2,7 @@ name: bind9
 description: "BIND version 9 is a major rewrite of nearly all aspects of the underlying BIND architecture. Some of the important features of BIND9 are DNS Security (DNSSEC, TSIG), IPv6, DNS Protocol Enhancements (IXFR, DDNS, DNS Notify, EDNS0), Views, Multiprocessor Support, and an Improved Portability Architecture."
 provider: fokus
 shared: true
-nfvo_version: 3.1.0
+nfvo_version: 3.0.0
 image:
     upload: check
     names:
