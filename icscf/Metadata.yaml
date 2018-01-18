@@ -1,6 +1,6 @@
 name: icscf
 provider: fokus
-nfvo_version: 3.2.0
+nfvo_version: 5.1.0
 shared: true
 description: "An Interrogating-CSCF (I-CSCF) is another SIP function located at the edge of an administrative domain. Its IP address is published in the Domain Name System (DNS) of the domain (using NAPTR and SRV type of DNS records), so that remote servers can find it, and use it as a forwarding point (e.g., registering) for SIP packets to this domain."
 image:
