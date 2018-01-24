@@ -49,24 +49,24 @@ install_packages(){
         echo "$SERVICE : Finished installing packages"
 }
 
-install_packages
-
+if [ ! -d "$INSTALLATION_PATH" ];then
+	install_packages
+fi
 # Set correct environment variables to allow usage of java
 export PATH=$PATH:$JAVA_BIN_PATH
 export JAVA_HOME="$JAVA_PATH"
 # Also set encoding to be able to compile without problems
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8 >> $LOGFILE 2>&1
 
-echo "$SERVICE : Checking out sources"
-svn checkout $FHOSS_REPO $INSTALLATION_PATH >> $LOGFILE
-
-cd $INSTALLATION_PATH
-
-# Tell tomcat server to listen to the correct ipv4 address ( to allow access to fhoss gui when using a floatingIp )
-
-echo "$SERVICE : Compiling sources"
-ant compile >> $LOGFILE 2>&1
-ant deploy >> $LOGFILE 2>&1
+if [ ! -d "$INSTALLATION_PATH" ];then
+	echo "$SERVICE : Checking out sources"
+	svn checkout $FHOSS_REPO $INSTALLATION_PATH >> $LOGFILE
+	cd $INSTALLATION_PATH
+	# Tell tomcat server to listen to the correct ipv4 address ( to allow access to fhoss gui when using a floatingIp )
+	echo "$SERVICE : Compiling sources"
+	ant compile >> $LOGFILE 2>&1
+	ant deploy >> $LOGFILE 2>&1
+fi
 
 sed -i -e "s/host=127.0.0.1/host=$mgmt/g" $HSS_PROPERTIES_FILE
 

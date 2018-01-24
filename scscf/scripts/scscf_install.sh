@@ -29,20 +29,19 @@ install_packages(){
 	        echo "$SERVICE : Finished installing packages"
 }
 
-install_packages
-
 if [ ! -d "$INSTALLATION_PATH" ];then
+	install_packages
 	echo "$SERVICE : Creating directories"
 	mkdir $INSTALLATION_PATH
-	mkdir $LOG_DIR
 fi
-
-# Checkout the source code for OpenIMSCore
-echo "$SERVICE : Checking out source-code"
-svn checkout $SVN_REPO $SER_IMS >> $LOGFILE
-
-mkdir $BIN_DIR
-mkdir $ETC_DIR
+mkdir $LOG_DIR
+if [ ! -d "$SER_IMS" ]; then
+	# Checkout the source code for OpenIMSCore
+	echo "$SERVICE : Checking out source-code"
+	svn checkout $SVN_REPO $SER_IMS >> $LOGFILE
+	mkdir $BIN_DIR
+	mkdir $ETC_DIR
+fi
 mkdir $INIT_DIR
 
 # move some scripts into their correct place
@@ -69,4 +68,8 @@ compile()
 	cd "$SER_IMS" && make -k install-libs all -j2 >> $LOGFILE 2>&1
 }
 set_init "$SERVICE"
-compile
+
+# check if we need to compile
+if [ ! -z "$(ls -A $SER_IMS | grep action.o)" ]; then
+	compile
+fi
