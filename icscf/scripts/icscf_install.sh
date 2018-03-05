@@ -36,7 +36,13 @@ if [ ! -d "$INSTALLATION_PATH" ];then
 	echo "$SERVICE : Creating directories"
 	mkdir $INSTALLATION_PATH
 fi
-mkdir $LOG_DIR
+
+echo "$SERVICE : Checking for directory : $LOG_DIR"
+if [ ! -d "$LOG_DIR" ];then
+	echo "creating directory : $LOG_DIR"
+	mkdir $LOG_DIR
+fi
+
 if [ ! -d "$SER_IMS" ]; then
 	# Checkout the source code for OpenIMSCore
 	echo "$SERVICE : Checking out source-code"
@@ -44,15 +50,37 @@ if [ ! -d "$SER_IMS" ]; then
 	mkdir $BIN_DIR
 	mkdir $ETC_DIR
 fi
-mkdir $INIT_DIR
-mkdir $SQL_DIR
+
+echo "$SERVICE : Checking for directory : $INIT_DIR"
+if [ ! -d "$INIT_DIR" ];then
+	echo "creating directory : $INIT_DIR"
+	mkdir $INIT_DIR
+fi
+
+echo "$SERVICE : Checking for directory : $BIN_DIR"
+if [ ! -d "$BIN_DIR" ];then
+	echo "creating directory : $BIN_DIR"
+	mkdir $BIN_DIR
+fi
+
+echo "$SERVICE : Checking for directory : $ETC_DIR"
+if [ ! -d "$ETC_DIR" ];then
+	echo "creating directory : $ETC_DIR"
+	mkdir $ETC_DIR
+fi
+
+echo "$SERVICE : Checking for directory : $SQL_DIR"
+if [ ! -d "$SQL_DIR" ];then
+	echo "creating directory : $SQL_DIR"
+	mkdir $SQL_DIR
+fi
 
 # move some scripts into their correct place
-mv $SCRIPTS_PATH/icscf.conf $INIT_DIR
-mv $SCRIPTS_PATH/icscf.* $BIN_DIR
-mv $SCRIPTS_PATH/var_icscf.cfg $ETC_DIR
-mv $SCRIPTS_PATH/var_icscf.xml $ETC_DIR
-mv $SCRIPTS_PATH/var_icscf.sql $SQL_DIR
+cp $SCRIPTS_PATH/icscf.conf $INIT_DIR/
+cp $SCRIPTS_PATH/icscf.* $BIN_DIR/ 
+cp $SCRIPTS_PATH/var_icscf.cfg $ETC_DIR/
+cp $SCRIPTS_PATH/var_icscf.xml $ETC_DIR/
+cp $SCRIPTS_PATH/var_icscf.sql $SQL_DIR/
 
 
 # Creation of upstart jobs for running the different components
