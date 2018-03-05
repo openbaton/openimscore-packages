@@ -30,7 +30,7 @@ install_packages(){
 }
 if [ ! -d "$INSTALLATION_PATH" ];then
 	install_packages
-	echo "$SERVICE : Creating directories"
+	echo "$SERVICE : Creating $INSTALLATION_PATH"
 	mkdir $INSTALLATION_PATH
 fi
 
@@ -44,14 +44,6 @@ if [ ! -d "$SER_IMS" ]; then
 	# Checkout the source code for OpenIMSCore
 	echo "$SERVICE : Checking out source-code"
 	svn checkout $SVN_REPO $SER_IMS >> $LOGFILE
-	mkdir $BIN_DIR
-	mkdir $ETC_DIR
-fi
-
-echo "$SERVICE : Checking for directory : $INIT_DIR"
-if [ ! -d "$INIT_DIR" ];then
-	echo "creating directory : $INIT_DIR"
-	mkdir $INIT_DIR
 fi
 
 echo "$SERVICE : Checking for directory : $BIN_DIR"
@@ -64,6 +56,12 @@ echo "$SERVICE : Checking for directory : $ETC_DIR"
 if [ ! -d "$ETC_DIR" ];then
 	echo "creating directory : $ETC_DIR"
 	mkdir $ETC_DIR
+fi
+
+echo "$SERVICE : Checking for directory : $INIT_DIR"
+if [ ! -d "$INIT_DIR" ];then
+	echo "creating directory : $INIT_DIR"
+	mkdir $INIT_DIR
 fi
 
 # move some scripts into their correct place
