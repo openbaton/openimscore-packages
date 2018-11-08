@@ -2,12 +2,12 @@ name: bind9
 description: "BIND version 9 is a major rewrite of nearly all aspects of the underlying BIND architecture. Some of the important features of BIND9 are DNS Security (DNSSEC, TSIG), IPv6, DNS Protocol Enhancements (IXFR, DDNS, DNS Notify, EDNS0), Views, Multiprocessor Support, and an Improved Portability Architecture."
 provider: fokus
 shared: true
-nfvo_version: 5.2.0
+nfvo_version: 6.0.0
 image:
-    upload: check
+    upload: false
     names:
         - openims
-    link: http://marketplace.openbaton.org:8082/api/v1/images/52e2ccc0-1dce-4663-894d-28aab49323aa/img
+    link: http://marketplace.openbaton.org:8080/api/v1/images/fokus/openims/img
 image-config:
     name: openims
     diskFormat: qcow2

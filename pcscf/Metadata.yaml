@@ -1,13 +1,13 @@
 name: pcscf
 provider: fokus
-nfvo_version: 5.2.0
+nfvo_version: 6.0.0
 shared: true
 description: "A Proxy-CSCF (P-CSCF) is a SIP proxy that is the first point of contact for the IMS terminal. It can be located either in the visited network (in full IMS networks) or in the home network (when the visited network is not IMS compliant yet)."
 image:
-    upload: check
+    upload: false
     names:
         - openims
-    link: http://marketplace.openbaton.org:8082/api/v1/images/52e2ccc0-1dce-4663-894d-28aab49323aa/img
+    link: http://marketplace.openbaton.org:8080/api/v1/images/fokus/openims/img
 image-config:
     name: openims
     diskFormat: qcow2

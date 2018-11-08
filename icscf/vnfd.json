@@ -1,7 +1,7 @@
       {  
          "name":"icscf",
          "vendor":"fokus",
-         "version":"5.1.0",
+         "version":"6.0.0",
          "lifecycle_event":[  
             {  
                "event":"CONFIGURE",
@@ -30,15 +30,18 @@
             "configurationParameters":[
 	       {  
                   "confKey":"port",
-                  "value":"5060"
+                  "value":"5060",
+                  "description":"The port used for the icscf in the OpenIMSCore"
                },
 	       {  
                   "confKey":"name",
-                  "value":"icscf"
+                  "value":"icscf",
+                  "description":"The name to be used for the icscf for creating the entries for DNS."
                },
 	       {  
                   "confKey":"diameter_p",
-                  "value":"3869"
+                  "value":"3869",
+                  "description":"The port on which icscf will listen for incoming diameter connections."
                }
             ]
          },
@@ -69,5 +72,29 @@
             }
          ],
          "type":"icscf",
-         "endpoint":"generic"
+         "endpoint":"generic",
+         "requires":
+         {
+           "fhoss":
+              {
+                 "parameters":[
+                 	"name",
+                        "port",
+                        "mgmt",
+                        "mgmt_floatingIp"]},
+           "bind9":
+              {
+                 "parameters":[
+                 	"useFloatingIpsForEntries",
+                        "realm",
+                        "mgmt",
+                        "mgmt_floatingIp"]},
+           "scscf":
+              {
+                 "parameters":[
+                 	"name",
+                        "port",
+                        "mgmt",
+                        "mgmt_floatingIp"]}
+         }
       }

@@ -1,7 +1,7 @@
       {  
          "name":"pcscf",
          "vendor":"fokus",
-         "version":"5.1.0",
+         "version":"6.0.0",
          "lifecycle_event":[  
             {  
                "event":"CONFIGURE",
@@ -28,11 +28,13 @@
             "configurationParameters":[
 	       {  
                   "confKey":"port",
-                  "value":"4060"
+                  "value":"4060",
+                  "description":"The port used for the pcscf in the OpenIMSCore."
                },
 	       {  
                   "confKey":"name",
-                  "value":"pcscf"
+                  "value":"pcscf",
+                  "description":"The name to be used for the pcscf for creating the entries for DNS."
                }
             ]
          },
@@ -63,5 +65,15 @@
             }
          ],
          "type":"pcscf",
-         "endpoint":"generic"
+         "endpoint":"generic",
+         "requires":
+         {
+           "bind9":
+              {
+                 "parameters":[
+                 	"useFloatingIpsForEntries",
+                        "realm",
+                        "mgmt",
+                        "mgmt_floatingIp"]}
+         }
       }

@@ -1,7 +1,7 @@
       {  
          "name":"bind9",
          "vendor":"fokus",
-         "version":"5.1.0",
+         "version":"6.0.0",
          "lifecycle_event":[  
             {  
                "event":"CONFIGURE",
@@ -9,8 +9,7 @@
 			"fhoss_relation_joined.sh",
 			"icscf_relation_joined.sh",
 			"scscf_relation_joined.sh",
-			"pcscf_relation_joined.sh",
-			"mmechess_relation_joined.sh"
+			"pcscf_relation_joined.sh"
                ]
             },
             {  
@@ -32,11 +31,13 @@
             "configurationParameters":[
 	       {  
                   "confKey":"realm",
-                  "value":"epc.mnc001.mcc001.3gppnetwork.org"
+                  "value":"epc.mnc001.mcc001.3gppnetwork.org",
+                  "description":"The domain name used for creating the entries for dns."
                },
 	       {  
                   "confKey":"useFloatingIpsForEntries",
-                  "value":"true"
+                  "value":"true",
+                  "description":"Boolean to define whether or not to use floating ips (if availabe) when creating the dns entries."
                }
             ]
          },
@@ -67,5 +68,35 @@
             }
          ],
          "type":"bind9",
-         "endpoint":"generic"
+         "endpoint":"generic",
+         "requires":
+         {
+           "fhoss":
+              {
+                 "parameters":[
+                 	"name",
+                        "mgmt",
+                        "mgmt_floatingIp"]},
+           "icscf":
+              {
+                 "parameters":[
+                 	"name",
+                        "port",
+                        "mgmt",
+                        "mgmt_floatingIp"]},
+           "scscf":
+              {
+                 "parameters":[
+                 	"name",
+                        "port",
+                        "mgmt",
+                        "mgmt_floatingIp"]},
+           "pcscf":
+              {
+                 "parameters":[
+                 	"name",
+                        "port",
+                        "mgmt",
+                        "mgmt_floatingIp"]}
+         }
       }

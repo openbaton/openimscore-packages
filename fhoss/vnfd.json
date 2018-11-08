@@ -1,7 +1,7 @@
       {  
          "name":"fhoss",
          "vendor":"fokus",
-         "version":"5.1.0",
+         "version":"6.0.0",
          "lifecycle_event":[  
             {  
                "event":"CONFIGURE",
@@ -30,11 +30,13 @@
             "configurationParameters":[
 	       {  
                   "confKey":"diameter_p",
-                  "value":"3868"
+                  "value":"3868",
+                  "description":"The port on which fhoss will listen for incoming diameter connections."
                },
 	       {  
                   "confKey":"name",
-                  "value":"hss"
+                  "value":"hss",
+                  "description":"The name to be used for the fhoss for creating the entries for DNS."
                }
             ]
          },
@@ -65,5 +67,30 @@
             }
          ],
          "type":"fhoss",
-         "endpoint":"generic"
+         "endpoint":"generic",
+         "requires":
+         {
+           "bind9":
+             {
+               "parameters":[
+               		"useFloatingIpsForEntries",
+                        "realm",
+                        "mgmt",
+                        "mgmt_floatingIp"]},
+           "icscf":
+              {
+                 "parameters":[
+                 	"name",
+                        "diameter_p",
+                        "mgmt",
+                        "mgmt_floatingIp"]},
+           "scscf":
+              {
+                 "parameters":[
+                 	"name",
+                        "port",
+                        "diameter_p",
+                        "mgmt",
+                        "mgmt_floatingIp"]}
+         }
       }
