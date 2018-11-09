@@ -8,6 +8,7 @@
 
 # If there are default options load them 
 if [ -f "$SCRIPTS_PATH/default_options" ]; then
+        echo "realm=$realm" >> $SCRIPTS_PATH/default_options
 	source $SCRIPTS_PATH/default_options
 fi
 
