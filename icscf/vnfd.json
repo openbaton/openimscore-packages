@@ -73,6 +73,13 @@
          ],
          "type":"icscf",
          "endpoint":"generic",
+         "provides":[
+           "port",
+           "mgmt",
+           "mgmt_floatingIp",
+           "name",
+           "diameter_p"
+         ],
          "requires":
          {
            "fhoss":

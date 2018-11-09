@@ -68,6 +68,12 @@
          ],
          "type":"fhoss",
          "endpoint":"generic",
+         "provides":[
+           "name",
+           "mgmt",
+           "mgmt_floatingIp",
+           "port"
+         ],
          "requires":
          {
            "bind9":

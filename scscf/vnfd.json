@@ -73,6 +73,13 @@
          ],
          "type":"scscf",
          "endpoint":"generic",
+         "provides":[
+           "name",
+           "port",
+           "mgmt",
+           "mgmt_floatingIp",
+           "diameter_p"
+         ],
          "requires":
          {
            "fhoss":

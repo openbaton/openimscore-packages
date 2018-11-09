@@ -66,6 +66,12 @@
          ],
          "type":"pcscf",
          "endpoint":"generic",
+         "provides":[
+           "name",
+           "port",
+           "mgmt",
+           "mgmt_floatingIp"
+         ],
          "requires":
          {
            "bind9":

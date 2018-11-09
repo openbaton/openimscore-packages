@@ -69,6 +69,12 @@
          ],
          "type":"bind9",
          "endpoint":"generic",
+         "provides":[
+           "useFloatingIpsForEntries",
+           "realm",
+           "mgmt",
+           "mgmt_floatingIp"
+         ],
          "requires":
          {
            "fhoss":
